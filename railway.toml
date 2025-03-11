@@ -4,5 +4,5 @@ dockerfilePath = "./ArtGallery/Dockerfile"
 
 [deploy]
 startCommand = "./ArtGallery"
-restartPolicyType = "nerver"
+restartPolicyType = "always"
 healthcheckPath = "/health"
