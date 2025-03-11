@@ -1,0 +1,7 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "./ArtGallery/Dockerfile"
+
+[deploy]
+startCommand = "./ArtGallery"
+restartPolicy = "always"
