@@ -11,8 +11,8 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ArtGalleryApiContext>(options =>
-   options.UseSqlServer(builder.Configuration.GetConnectionString("ArtGalleryApiContext") ?? throw new InvalidOperationException("Connection string 'ArtGalleryApiContext' not found.")));
+//builder.Services.AddDbContext<ArtGalleryApiContext>(options =>
+//   options.UseSqlServer(builder.Configuration.GetConnectionString("ArtGalleryApiContext") ?? throw new InvalidOperationException("Connection string 'ArtGalleryApiContext' not found.")));
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
