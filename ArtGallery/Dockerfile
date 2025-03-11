@@ -12,11 +12,11 @@ COPY ["ArtGallery/ArtGallery.csproj", "ArtGallery/"]
 RUN dotnet restore "./ArtGallery/ArtGallery.csproj"
 COPY . .
 WORKDIR "/src/ArtGallery"
-RUN dotnet build "./ArtGallery.csproj" -c %BUILD_CONFIGURATION% -o /app/build
+RUN dotnet build "./ArtGallery.csproj" -c ${BUILD_CONFIGURATION} -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ArtGallery.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./ArtGallery.csproj" -c ${BUILD_CONFIGURATION} -o /app/publish /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/runtime-deps:8.0.100 AS final
 WORKDIR /app
