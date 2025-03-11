@@ -81,26 +81,36 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var app = builder.Build();
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    // Configure the HTTP request pipeline.
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.UseStaticFiles();
+    app.MapControllers();
+    var webSocketOptions = new WebSocketOptions
+    {
+        KeepAliveInterval = TimeSpan.FromMinutes(2),
+    };
+
+    app.UseWebSockets(webSocketOptions);
+    app.UseCors();
+
+    app.Run();
 }
-
-// Configure the HTTP request pipeline.
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseStaticFiles();
-app.MapControllers();
-var webSocketOptions = new WebSocketOptions
+catch (Exception ex)
 {
-    KeepAliveInterval = TimeSpan.FromMinutes(2),
-};
-
-app.UseWebSockets(webSocketOptions);
-app.UseCors();
-
-app.Run();
+    Console.WriteLine("❌ Application startup failed!");
+    Console.WriteLine($"🔍 Error: {ex.Message}");
+    Console.WriteLine($"📌 StackTrace: {ex.StackTrace}");
+}
