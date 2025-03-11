@@ -11,6 +11,9 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*:{port}");
+builder.Services.AddHealthChecks();
 //builder.Services.AddDbContext<ArtGalleryApiContext>(options =>
 //   options.UseSqlServer(builder.Configuration.GetConnectionString("ArtGalleryApiContext") ?? throw new InvalidOperationException("Connection string 'ArtGalleryApiContext' not found.")));
 builder.Services.AddCors(options =>
@@ -91,6 +94,7 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+    app.UseHealthChecks("/health");
 
     // Configure the HTTP request pipeline.
     app.UseHttpsRedirection();
