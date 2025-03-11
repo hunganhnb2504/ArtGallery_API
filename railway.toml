@@ -5,4 +5,3 @@ dockerfilePath = "./ArtGallery/Dockerfile"
 [deploy]
 startCommand = "./ArtGallery"
 restartPolicyType = "always"
-healthcheckPath = "/health"

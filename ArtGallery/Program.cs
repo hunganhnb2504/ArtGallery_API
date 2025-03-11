@@ -11,7 +11,6 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddHealthChecks();
 //builder.Services.AddDbContext<ArtGalleryApiContext>(options =>
 //   options.UseSqlServer(builder.Configuration.GetConnectionString("ArtGalleryApiContext") ?? throw new InvalidOperationException("Connection string 'ArtGalleryApiContext' not found.")));
 builder.Services.AddCors(options =>
@@ -103,7 +102,6 @@ try
     {
         KeepAliveInterval = TimeSpan.FromMinutes(2),
     };
-    app.UseHealthChecks("/health");
     app.UseWebSockets(webSocketOptions);
     app.UseCors();
 
