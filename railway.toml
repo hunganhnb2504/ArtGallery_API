@@ -3,6 +3,6 @@ builder = "dockerfile"
 dockerfilePath = "./ArtGallery/Dockerfile"
 
 [deploy]
-startCommand = "dotnet ./ArtGallery.dll"
+startCommand = "dotnet /app/ArtGallery.dll"
 restartPolicyType = "always"
 healthcheckPath = "/health"
