@@ -21,4 +21,4 @@ RUN dotnet publish "./ArtGallery.csproj" -c ${BUILD_CONFIGURATION} -o /app/publi
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ["dotnet", "ArtGallery.dll"]
+ENTRYPOINT ["./ArtGallery"]
