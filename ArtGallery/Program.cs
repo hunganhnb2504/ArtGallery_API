@@ -97,7 +97,7 @@ try
     app.UseHealthChecks("/health");
 
     // Configure the HTTP request pipeline.
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
     app.UseStaticFiles();
